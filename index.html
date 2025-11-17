@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --accent:#004C70;
+    --circle-size:44px;
+    --icon-size:20px;
+    --gap:14px;
+    --top-offset:140px;
+  }
+
+  html,body{
+    height:100%;margin:0;background:transparent;
+    font-family:'Raleway',Arial,sans-serif;
+  }
+
+  /* FIXED SIDEBAR – STATIC (no toggle) */
+  .cb-row {
+    position: fixed;
+    left: 12px;
+    top: var(--top-offset);
+    z-index: 999999;
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    align-items: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+
+  /* each icon */
+  .cb-item {
+    display: grid;
+    place-items: center;
+    width: var(--circle-size);
+    height: var(--circle-size);
+    border-radius: 10px;
+    background: rgba(0,0,0,0.7);
+    text-decoration: none;
+    position: relative;
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+
+  .cb-item svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display:block;
+    background-color: #ffffff;
+    border-radius: 3px;
+  }
+
+  /* slide-out label on hover */
+  .cb-label {
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    opacity: 0;
+    background: #fff;
+    color: var(--accent);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events:none;
+    transition: opacity .14s ease, transform .14s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-left: 3px solid transparent;
+  }
+
+  .cb-item:hover {
+    transform: translateX(6px);
+  }
+
+  .cb-item:hover .cb-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    border-left-color: var(--app-color);
+    color: var(--app-color);
+  }
+
+  /* small screens */
+  @media (max-width:640px){
+    :root{ --top-offset:100px; }
+    .cb-label{ display:none; }
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="cb-row">
+
+    <!-- Gmail -->
+    <a class="cb-item" style="--app-color:#EA4335" href="https://mail.google.com" target="_blank" title="Gmail">
+      <svg viewBox="0 0 24 24">
+        <path fill="#EA4335" d="M12 13L2 6.5V17.5C2 18.3 2.7 19 3.5 19H5V9.25L12 14.25L19 9.25V19H20.5C21.3 19 22 18.3 22 17.5V6.5L12 13Z"/>
+        <path fill="#FBBC05" d="M5 5V9.25L12 14.25L19 9.25V5H5Z"/>
+        <path fill="#34A853" d="M2 6.5L12 13L22 6.5L12 2L2 6.5Z" opacity=".85"/>
+      </svg>
+      <div class="cb-label">Gmail</div>
+    </a>
+
+    <!-- Drive -->
+    <a class="cb-item" style="--app-color:#4285F4" href="https://drive.google.com" target="_blank" title="Drive">
+      <svg viewBox="0 0 24 24">
+        <path fill="#4285F4" d="M2 12L7.5 3H12L6.5 12H2Z"/>
+        <path fill="#0F9D58" d="M6.5 12L12 3H16.5L11 12H6.5Z"/>
+        <path fill="#F4B400" d="M11 12H16.5L22 12L17.5 21H12L11 12Z"/>
+      </svg>
+      <div class="cb-label">Drive</div>
+    </a>
+
+    <!-- Calendar -->
+    <a class="cb-item" style="--app-color:#1A73E8" href="https://calendar.google.com" target="_blank" title="Calendar">
+      <svg viewBox="0 0 24 24">
+        <rect fill="#1A73E8" x="3" y="4" width="18" height="16" rx="2"/>
+        <rect fill="#FFFFFF" x="6" y="10" width="12" height="8"/>
+        <rect fill="#1A73E8" x="6" y="4" width="2" height="3"/>
+        <rect fill="#1A73E8" x="16" y="4" width="2" height="3"/>
+      </svg>
+      <div class="cb-label">Calendar</div>
+    </a>
+
+    <!-- Docs -->
+    <a class="cb-item" style="--app-color:#1A73E8" href="https://docs.google.com" target="_blank" title="Docs">
+      <svg viewBox="0 0 24 24">
+        <path fill="#1A73E8" d="M6 2H14L20 8V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V4C4 2.9 4.9 2 6 2Z"/>
+        <path fill="#FFFFFF" d="M14 2V8H20" opacity="0.9"/>
+      </svg>
+      <div class="cb-label">Docs</div>
+    </a>
+
+    <!-- Sheets -->
+    <a class="cb-item" style="--app-color:#188038" href="https://sheets.google.com" target="_blank" title="Sheets">
+      <svg viewBox="0 0 24 24">
+        <path fill="#188038" d="M5 3H19C20.1 3 21 3.9 21 5V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3Z"/>
+        <path fill="#FFFFFF" d="M7 7H17V9H7ZM7 11H17V13H7ZM7 15H17V17H7Z"/>
+      </svg>
+      <div class="cb-label">Sheets</div>
+    </a>
+
+    <!-- Slides -->
+    <a class="cb-item" style="--app-color:#F9AB00" href="https://slides.google.com" target="_blank" title="Slides">
+      <svg viewBox="0 0 24 24">
+        <path fill="#F9AB00" d="M4 4H20V20H4V4Z"/>
+        <rect fill="#FFFFFF" x="7" y="7" width="10" height="10"/>
+      </svg>
+      <div class="cb-label">Slides</div>
+    </a>
+
+    <!-- Meet -->
+    <a class="cb-item" style="--app-color:#00897B" href="https://meet.google.com" target="_blank" title="Meet">
+      <svg viewBox="0 0 24 24">
+        <path fill="#00897B" d="M4 6C4 5.45 4.45 5 5 5H15C15.55 5 16 5.45 16 6V18C16 18.55 15.55 19 15 19H5C4.45 19 4 18.55 4 18V6Z"/>
+        <path fill="#00ACC1" d="M16 10.5L20 7V17L16 13.5V10.5Z"/>
+      </svg>
+      <div class="cb-label">Meet</div>
+    </a>
+
+    <!-- Chat -->
+    <a class="cb-item" style="--app-color:#00A36C" href="https://chat.google.com" target="_blank" title="Chat">
+      <svg viewBox="0 0 24 24">
+        <path fill="#00A36C" d="M4 2H20C21.1 2 22 2.9 22 4V16C22 17.1 21.1 18 20 18H7L4 20V4C4 2.9 4.9 2 4 2Z"/>
+      </svg>
+      <div class="cb-label">Chat</div>
+    </a>
+
+  </div>
+
+</body>
+</html>
